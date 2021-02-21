@@ -40,16 +40,26 @@ const syncAndSeed=async()=>{
     const walkDog= await Tasks.create({name: 'walk the Dog'})
     const completeWorkProject= await Tasks.create({name:'complete work project'})
     const vacation= await Tasks.create({name:'go on vacation', dependencies: 'complete work project'})
+    const attendGraduation= await Tasks.create({name:'attend graduation', dependencies:'pass exam'})
+    const passExam =await Tasks.create({name: 'pass the exam', dependencies:'study for exam'})
+    const studyForExam= await Tasks.create({name: 'study for exam'})
 
     bakeCake.PersonId= harry.id;
     buyCakeIngredients.PersonId=harry.id;
     walkDog.PersonId=john.id;
     completeWorkProject.PersonId=andrew.id;
     vacation.PersonId= andrew.id;
+    attendGraduation.PersonId=andrew.id;
+    passExam.PersonId=andrew.id;
+    studyForExam.PersonId=andrew.id;
 
     bakeCake.dependencyId= buyCakeIngredients.id;
     vacation.dependencyId= completeWorkProject.id;
-    await Promise.all([bakeCake.save(), buyCakeIngredients.save(), walkDog.save(), bakeCake.save(), completeWorkProject.save(), vacation.save()])
+    attendGraduation.dependencyId= passExam.id;
+    passExam.dependencyId=studyForExam.id
+    await Promise.all([bakeCake.save(), buyCakeIngredients.save(), walkDog.save(), completeWorkProject.save(), vacation.save(),
+        attendGraduation.save(), passExam.save(), studyForExam.save(), 
+    ])
 }
 
 
