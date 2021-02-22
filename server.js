@@ -1,6 +1,6 @@
 const {Sequelize, DataTypes, UUID, UUIDV4} = require('sequelize')
 const pg=require('pg')
-const db =new Sequelize(process.env.DATABASE_URL ||'postgres://localhost/tasks_db')
+const db =new Sequelize(process.env.DATABASE_URL ||'postgres://localhost/tasks_db', {logging:false})
 
 const test=async()=>{
     try{
@@ -32,7 +32,6 @@ Tasks.belongsTo(Tasks, {as: 'dependency'})
 
 
 const syncAndSeed=async()=>{
-    try{
         await People.sync({force: true})
         await Tasks.sync({force:true})
         const harry=await People.create({name: 'Harry', occupation:'retailer'})
@@ -64,14 +63,8 @@ const syncAndSeed=async()=>{
         await Promise.all([bakeCake.save(), buyCakeIngredients.save(), walkDog.save(), completeWorkProject.save(), vacation.save(),
             attendGraduation.save(), passExam.save(), studyForExam.save(), 
         ]) 
-    } catch(err){
-        console.log(error)
-    }
-
 }
 
-
-syncAndSeed();
 
 
 module.exports={
