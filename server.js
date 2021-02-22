@@ -24,7 +24,9 @@ const Tasks=db.define('Tasks',{
     dependencies:{type: DataTypes.STRING, allowNull:true, defaultValue: 'none'}
 })
 
-Tasks.belongsTo(People);
+Tasks.belongsTo(People);cd
+ 
+
 Tasks.belongsTo(Tasks, {as: 'dependency'})
 
 
