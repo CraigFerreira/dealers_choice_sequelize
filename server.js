@@ -1,5 +1,5 @@
 const {Sequelize, DataTypes, UUID, UUIDV4} = require('sequelize')
-const db =new Sequelize('postgres://localhost/tasks_db', {logging: false})
+const db =new Sequelize(process.env.DATABASE_URL ||'postgres://localhost/tasks_db', {logging: false})
 
 const test=async()=>{
     try{
