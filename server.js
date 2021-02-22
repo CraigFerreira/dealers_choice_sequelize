@@ -1,5 +1,6 @@
 const {Sequelize, DataTypes, UUID, UUIDV4} = require('sequelize')
-const db =new Sequelize(process.env.DATABASE_URL ||'postgres://localhost/tasks_db', {logging: false})
+const pg=require('pg')
+const db =new Sequelize(process.env.DATABASE_URL ||'postgres://localhost/tasks_db')
 
 const test=async()=>{
     try{
@@ -64,7 +65,7 @@ const syncAndSeed=async()=>{
             attendGraduation.save(), passExam.save(), studyForExam.save(), 
         ]) 
     } catch(err){
-        console.log(err)
+        console.log(error)
     }
 
 }
