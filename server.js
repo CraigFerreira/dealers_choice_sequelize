@@ -60,6 +60,7 @@ const syncAndSeed=async()=>{
         vacation.dependencyId= completeWorkProject.id;
         attendGraduation.dependencyId= passExam.id;
         passExam.dependencyId=studyForExam.id
+        // await passExam.update({dependencyId: studyForExam.id})
         await Promise.all([bakeCake.save(), buyCakeIngredients.save(), walkDog.save(), completeWorkProject.save(), vacation.save(),
             attendGraduation.save(), passExam.save(), studyForExam.save(), 
         ]) 
